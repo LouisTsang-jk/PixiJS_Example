@@ -1,0 +1,41 @@
+{
+  "frames": {
+    "Finn0000.png": {
+      "frame": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 }
+    },
+    "Finn0001.png": {
+      "frame": { "x": 32, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 }
+    },
+    "Finn0002.png": {
+      "frame": { "x": 64, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 }
+    },
+    "Finn0003.png": {
+      "frame": { "x": 96, "y": 0, "w": 32, "h": 32 },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": { "x": 0, "y": 0, "w": 32, "h": 32 },
+      "sourceSize": { "w": 32, "h": 32 }
+    }
+  },
+  "meta": {
+    "app": "http://www.texturepacker.com",
+    "version": "1.0",
+    "image": "FinnSprite.png",
+    "format": "RGBA8888",
+    "size": { "w": 896, "h": 32 },
+    "scale": "1",
+    "smartupdate": "$TexturePacker:SmartUpdate:2f213a6b451f9f5719773418dfe80ae8$"
+  }
+}
