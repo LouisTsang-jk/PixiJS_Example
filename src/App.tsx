@@ -10,9 +10,16 @@ import {
   AnimatedSprite,
 } from "pixi.js";
 import bunnyImg from "./assets/bunny.png";
+import TWEEN from "@tweenjs/tween.js";
 
 function App() {
   const appRef = useRef<HTMLDivElement>(null);
+
+  function animate(time: number) {
+    requestAnimationFrame(animate);
+    TWEEN.update(time);
+  }
+
   useEffect(() => {
     const app = new Application({
       width: 640,
@@ -28,13 +35,6 @@ function App() {
       bunny.interactive = true;
       bunny.x = 300;
       bunny.y = 120;
-      // bunny.rotation += 0.1 * delta;
-      // bunny.x += 1 * delta;
-      // bunny.y += 1 * delta;
-      // if (bunny.x > 640 && bunny.y > 640) {
-      //   bunny.x = 0;
-      //   bunny.y = 0;
-      // }
     });
     bunny.scale.set(2);
     bunny.on("click", () => {
@@ -57,9 +57,18 @@ function App() {
         finn.scale.set(3);
         app.stage.addChild(finn);
         document.addEventListener("keydown", ({ key }) => {
-          console.log('key', key);
-          if (key === "ArrowRight") finn.x += 24;
-          if (key === "ArrowLeft") finn.x -= 24;
+          const coords = { x: finn.x };
+          let offset = 0;
+          if (key === "ArrowRight") offset = finn.x + 64;
+          if (key === "ArrowLeft") offset = finn.x - 64;
+          console.log("offset", offset);
+          new TWEEN.Tween(coords)
+            .to({ x: offset })
+            .onUpdate(() => {
+              finn.x = coords.x;
+            })
+            .start();
+          requestAnimationFrame(animate);
         });
       });
     appRef.current?.appendChild(app.view);
