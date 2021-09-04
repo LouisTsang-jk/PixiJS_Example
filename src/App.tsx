@@ -9,7 +9,6 @@ import {
   Spritesheet,
   AnimatedSprite,
 } from "pixi.js";
-import bunnyImg from "./assets/bunny.png";
 import TWEEN from "@tweenjs/tween.js";
 
 function App() {
@@ -40,16 +39,26 @@ function App() {
     bunny.on("click", () => {
       console.log("bunny: 你点到我啦!");
     });
+    app.ticker.add(() => {
+      // bunny.rotation += 0.1;
+    })
     // Finn
     app.loader
       .add("http://localhost:3000/src/assets/FinnSprite.json")
       .load(() => {
+        let isRunning = false;
         const frames = [];
-        for (let i = 0; i < 4; i++) {
+        const runFames = [];
+        for (let i = 0; i < 9; i++) {
           const val = i < 10 ? `0${i}` : i;
           frames.push(Texture.from(`Finn00${val}.png`));
         }
+        for (let i = 9; i < 14; i++) {
+          const val = i < 10 ? `0${i}` : i;
+          runFames.push(Texture.from(`Finn00${val}.png`));
+        }
         const finn = new AnimatedSprite(frames);
+        const finn_run = new AnimatedSprite(runFames)
         finn.animationSpeed = 0.1;
         finn.play();
         finn.y = 76;
@@ -59,12 +68,12 @@ function App() {
         document.addEventListener("keydown", ({ key }) => {
           const coords = { x: finn.x };
           let offset = 0;
-          if (key === "ArrowRight") offset = finn.x + 64;
-          if (key === "ArrowLeft") offset = finn.x - 64;
-          console.log("offset", offset);
+          if (key === "ArrowRight") offset = finn.x + 32;
+          if (key === "ArrowLeft") offset = finn.x - 32;
           new TWEEN.Tween(coords)
-            .to({ x: offset })
+            .to({ x: offset }, 100)
             .onUpdate(() => {
+              isRunning = offset !== coords.x;
               finn.x = coords.x;
             })
             .start();
